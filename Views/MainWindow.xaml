@@ -16,5 +16,10 @@
                 HorizontalAlignment="Left" Margin="30,344,0,0" 
                 VerticalAlignment="Top" Height="50" Width="130"
                 Click="ShowFileDialog_OnClick" RenderTransformOrigin="0.538,0.501"/>
+        
+        <Button Content="Создать карту расскладки" 
+                HorizontalAlignment="Left" Margin="500,344,0,0" 
+                VerticalAlignment="Top" Height="50" Width="180"
+                Click="GetMap_OnClick" RenderTransformOrigin="0.538,0.501"/>
     </Grid>
 </Window>

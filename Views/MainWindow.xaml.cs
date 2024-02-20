@@ -13,15 +13,24 @@ public partial class MainWindow : Window
 {
     private readonly IImportService _importService;
     private readonly IMarkingService _markingService;
+    private readonly IExportService _exportService;
     
-    public MainWindow(IImportService importService, IMarkingService markingService)
+    public MainWindow(IImportService importService,
+        IMarkingService markingService,
+        IExportService exportService)
     {
         _importService = importService;
         _markingService = markingService;
+        _exportService = exportService;
         InitializeComponent();
     }
-
-
+    
+    private void GetMap_OnClick(object sender, RoutedEventArgs e)
+    {
+        var gtin = _markingService.GetMission().Mission.Lot.Product.Gtin;
+        var test = _exportService.GetMapByProductGtin(gtin);
+    }
+    
     private void ShowFileDialog_OnClick(object sender, RoutedEventArgs e)
     {
         //ToDo - get from table

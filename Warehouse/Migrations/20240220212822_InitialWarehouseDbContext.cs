@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -30,16 +29,15 @@ namespace WpfApp1.Warehouse.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Code = table.Column<string>(type: "TEXT", nullable: false),
-                    PalletId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    PalletId1 = table.Column<int>(type: "INTEGER", nullable: false)
+                    PalletId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Code = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Boxes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Boxes_Pallets_PalletId1",
-                        column: x => x.PalletId1,
+                        name: "FK_Boxes_Pallets_PalletId",
+                        column: x => x.PalletId,
                         principalTable: "Pallets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -52,34 +50,31 @@ namespace WpfApp1.Warehouse.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Gtin = table.Column<string>(type: "TEXT", nullable: false),
-                    Code = table.Column<string>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Volume = table.Column<double>(type: "REAL", nullable: false),
-                    BoxFormat = table.Column<int>(type: "INTEGER", nullable: false),
-                    PalletFormat = table.Column<int>(type: "INTEGER", nullable: false),
-                    BoxId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    BoxId1 = table.Column<int>(type: "INTEGER", nullable: false)
+                    Volume = table.Column<string>(type: "TEXT", nullable: false),
+                    BoxId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Code = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Boxes_BoxId1",
-                        column: x => x.BoxId1,
+                        name: "FK_Products_Boxes_BoxId",
+                        column: x => x.BoxId,
                         principalTable: "Boxes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Boxes_PalletId1",
+                name: "IX_Boxes_PalletId",
                 table: "Boxes",
-                column: "PalletId1");
+                column: "PalletId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_BoxId1",
+                name: "IX_Products_BoxId",
                 table: "Products",
-                column: "BoxId1");
+                column: "BoxId");
         }
 
         /// <inheritdoc />

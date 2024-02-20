@@ -1,10 +1,9 @@
-﻿namespace WpfApp1.Warehouse.Data.Models;
+﻿using WpfApp1.Warehouse.Data.Contracts;
 
-public class Box
+namespace WpfApp1.Warehouse.Data.Models;
+
+public class Box : ICodeModel
 {
-    public int Id { get; set; }
-    public string Code { get; set; }
-    
-    public Guid PalletId { get; set; }
+    public int PalletId { get; set; }
     public Pallet Pallet { get; set; }
 }
